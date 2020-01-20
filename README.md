@@ -22,7 +22,7 @@ I enjoyed creating the Flix application. I did a similar app with codepath team 
 
 ### App Walkthough GIF
 
-<img src="https://github.com/Araz-cs/Flixster/blob/master/Flix.gif" width=250><br>
+<img src="https://github.com/Araz-cs/Flixster/blob/master/Flix.gif" width=200><br>
 
 <img src="https://github.com/Araz-cs/Flixster/blob/master/Flix1.gif" width=450><br>
 ### Notes

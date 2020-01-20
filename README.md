@@ -24,7 +24,7 @@ I enjoyed creating the Flix application. I did a similar app with codepath team 
 
 <img src="https://github.com/Araz-cs/Flixster/blob/master/Flix.gif" width=250><br>
 
-<img src="https://github.com/Araz-cs/Flixster/blob/master/Flix1.gif" width=250><br>
+<img src="https://github.com/Araz-cs/Flixster/blob/master/Flix1.gif" width=350><br>
 ### Notes
 I encountered miner challanges which took some time from me to find out what I did wrong. I learned to take my time and do every step patiently and make sure every step works before jumping to the next step. 
 ### Open-source libraries used

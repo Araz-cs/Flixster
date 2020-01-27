@@ -23,9 +23,9 @@ I enjoyed creating the Flix application. I did a similar app with codepath team 
 
 ### App Walkthough GIF
 
-<img src="https://github.com/Araz-cs/Flixster/blob/master/FLIX1.gif" width=450><br>
+<img src="https://github.com/Araz-cs/Flixster/blob/master/FLIX1.gif" width=200><br>
 
-<img src="https://github.com/Araz-cs/Flixster/blob/master/FLIX.gif" width=200><br>
+<img src="https://github.com/Araz-cs/Flixster/blob/master/FLIX.gif" width=450><br>
 
 
 ### Notes

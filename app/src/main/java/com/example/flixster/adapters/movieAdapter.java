@@ -1,20 +1,28 @@
 package com.example.flixster.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.flixster.DetailActivity;
 import com.example.flixster.models.Movie;
 import com.example.flixster.R;
+
+import org.parceler.Parcels;
 
 import java.util.List;
 
@@ -46,7 +54,7 @@ public class movieAdapter extends RecyclerView.Adapter<movieAdapter.ViewHolder>{
         //get the movie at the passed in position
         Movie movie = movies.get(position);
         //bind the movie data into the VH
-        holder.bind(movie);
+        holder.bind(movie,position);
     }
 
     @Override
@@ -56,9 +64,13 @@ public class movieAdapter extends RecyclerView.Adapter<movieAdapter.ViewHolder>{
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
+        RelativeLayout container;
         TextView tvTitle;
         TextView tvOverview;
         ImageView ivPoster;
+        ImageButton imageButton;
+        ImageButton imageButton3;
+        //ImageView ivProfile;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -66,24 +78,66 @@ public class movieAdapter extends RecyclerView.Adapter<movieAdapter.ViewHolder>{
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvOverview = itemView.findViewById(R.id.tvOverview);
             ivPoster = itemView.findViewById(R.id.ivPoster);
-
+            imageButton = itemView.findViewById(R.id.imageButton);
+            imageButton3 = itemView.findViewById(R.id.imageButton3);
+            container = itemView.findViewById(R.id.container);
 
         }
 
-        public void bind(Movie movie) {
+        public void bind(final Movie movie,int position) {
             tvTitle.setText(movie.getTitle());
             tvOverview.setText(movie.getOverview());
             String imageUrl;
+            int imageBtn;
+            //imageButton.setEnabled(true);
+
 
             //if in landscape mode
             if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
                 //url = backdrop
                 imageUrl = movie.getBackgroundPath();
+                imageBtn = 1;
             }
-            else
+            else {
                 imageUrl = movie.getPostPath();
+                imageBtn = 0;
+            }
 
+            // 1. Register click listener on the whole row
             Glide.with(context).load(imageUrl).into(ivPoster);
+            if (movie.getRating() <= 5)
+                if(imageBtn==0) {
+                    if (imageButton != null)
+                        imageButton.setVisibility(View.GONE);
+                }
+                else
+                if(imageButton3!=null)
+                    imageButton3.setVisibility(View.GONE);
+                else
+                if(imageBtn==1) {
+                    if (imageButton != null)
+                        imageButton.setVisibility(View.VISIBLE);
+                }
+                else
+                if(imageButton3!=null)
+                    imageButton3.setVisibility(View.VISIBLE);
+
+            container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // 2. Navigate to a new activity on tap
+                    //passing data from adapter to detail class to display
+                    Intent i = new Intent(context, DetailActivity.class);
+                    //i.putExtra(DetailsActivity.EXTRA_CONTACT,contact);
+                    //ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(context,(View)ivProfile,"profile");
+                    //startActivity(intent,options.toBundle());
+                    i.putExtra("movie", Parcels.wrap(movie));
+
+
+
+                    context.startActivity(i);
+                }
+            });
         }
     }
 }
